@@ -8,13 +8,7 @@
   "author": "Ben McMahen",
   "license": "MIT",
   "private": false,
-  "keywords": [
-    "react",
-    "gesture",
-    "drag and drop",
-    "dnd",
-    "grid"
-  ],
+  "keywords": ["react", "gesture", "drag and drop", "dnd", "grid"],
   "scripts": {
     "test": "jest",
     "test-watch": "jest -w",
@@ -43,15 +37,15 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@storybook/react": "^5.0.5",
-    "@types/jest": "^24.0.11",
+    "@types/jest": "^26.0.15",
     "@types/storybook__react": "^4.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
-    "babel-jest": "^24.5.0",
+    "babel-jest": "^26.0.15",
     "babel-loader": "^8.0.5",
     "babel-plugin-require-context-hook": "^1.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "jest": "^24.5.0",
+    "jest": "^26.0.15",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-gesture-responder": "^2.1.0",
@@ -67,7 +61,7 @@
     "rollup-plugin-typescript2": "^0.20.1",
     "rollup-plugin-uglify": "^6.0.2",
     "ts-jest": "^24.0.1",
-    "typescript": "^3.5.0-dev.20190517",
+    "typescript": "^4.1.2",
     "webpack": "^4.29.6"
   },
   "dependencies": {

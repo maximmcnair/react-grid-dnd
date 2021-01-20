@@ -141,12 +141,9 @@ export function GridItem({
 
   const props = {
     className:
-      "GridItem" +
-      (isDragging ? " dragging" : "") +
-      (!!disableDrag ? " disabled" : "") +
-      className
-        ? ` ${className}`
-        : "",
+      (className ? className : 'GridItem') +
+      (isDragging ? ' dragging' : '') +
+      (!!disableDrag ? ' disabled' : ''),
     ...bind,
     style: {
       cursor: !!disableDrag ? "grab" : undefined,

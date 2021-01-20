@@ -114,6 +114,7 @@ export function GridDropZone({
 
             const order = placeholder
               ? swap(
+                  // @ts-ignore
                   itemsIndexes,
                   placeholder.startIndex,
                   placeholder.targetIndex
@@ -121,6 +122,7 @@ export function GridDropZone({
               : itemsIndexes;
 
             const pos = getPositionForIndex(
+              // @ts-ignore
               order.indexOf(i),
               grid,
               traverseIndex

@@ -16,6 +16,8 @@ export interface GridDropZoneProps
   disableDrag?: boolean;
   disableDrop?: boolean;
   style?: React.CSSProperties;
+  onDragStart?(): void;
+  onDragEnd?(): void;
 }
 
 interface PlaceholderType {
@@ -31,6 +33,8 @@ export function GridDropZone({
   disableDrag = false,
   disableDrop = false,
   rowHeight,
+  onDragStart,
+  onDragEnd,
   ...other
 }: GridDropZoneProps) {
   const {
@@ -41,7 +45,7 @@ export function GridDropZone({
     measureAll,
     onChange,
     remove,
-    getActiveDropId
+    getActiveDropId,
   } = React.useContext(GridContext);
 
   const ref = React.useRef<HTMLDivElement>(null);
@@ -59,7 +63,7 @@ export function GridDropZone({
   const grid: GridSettings = {
     columnWidth: bounds.width / boxesPerRow,
     boxesPerRow,
-    rowHeight
+    rowHeight,
   };
 
   const childCount = React.Children.count(children);
@@ -79,7 +83,7 @@ export function GridDropZone({
       count: childCount,
       grid,
       disableDrop,
-      remeasure
+      remeasure,
     });
   }, [childCount, disableDrop, bounds, id, grid]);
 
@@ -100,7 +104,7 @@ export function GridDropZone({
       ref={ref}
       style={{
         position: "relative",
-        ...style
+        ...style,
       }}
       {...other}
     >
@@ -172,7 +176,7 @@ export function GridDropZone({
                 ) {
                   setPlaceholder({
                     targetIndex,
-                    startIndex: i
+                    startIndex: i,
                   });
                 }
               } else if (placeholder) {
@@ -216,10 +220,14 @@ export function GridDropZone({
 
               setPlaceholder(null);
               setDraggingIndex(null);
+
+              if (onDragEnd) onDragEnd();
             }
 
             function onStart() {
               measureAll();
+
+              if (onDragStart) onDragStart();
             }
 
             return (
@@ -237,7 +245,7 @@ export function GridDropZone({
                   onEnd,
                   onStart,
                   grid,
-                  dragging: i === draggingIndex
+                  dragging: i === draggingIndex,
                 }}
               >
                 {child}

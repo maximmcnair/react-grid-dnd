@@ -7,5 +7,7 @@ export interface GridDropZoneProps extends React.HTMLAttributes<HTMLDivElement> 
     disableDrag?: boolean;
     disableDrop?: boolean;
     style?: React.CSSProperties;
+    onDragStart?(): void;
+    onDragEnd?(): void;
 }
-export declare function GridDropZone({ id, boxesPerRow, children, style, disableDrag, disableDrop, rowHeight, ...other }: GridDropZoneProps): JSX.Element;
+export declare function GridDropZone({ id, boxesPerRow, children, style, disableDrag, disableDrop, rowHeight, onDragStart, onDragEnd, ...other }: GridDropZoneProps): JSX.Element;

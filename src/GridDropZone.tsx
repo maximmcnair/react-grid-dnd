@@ -10,6 +10,7 @@ import { GridItemContext } from "./GridItemContext";
 export interface GridDropZoneProps
   extends React.HTMLAttributes<HTMLDivElement> {
   boxesPerRow: number;
+  boxAmount: number;
   rowHeight: number;
   id: string;
   children: React.ReactNodeArray;
@@ -28,6 +29,7 @@ interface PlaceholderType {
 export function GridDropZone({
   id,
   boxesPerRow,
+  boxAmount,
   children,
   style,
   disableDrag = false,
@@ -99,12 +101,28 @@ export function GridDropZone({
   // when animating swap positions on drag events
   const itemsIndexes = React.Children.map(children, (_, i) => i);
 
+  const isTarget = traverse?.targetId === id;
+
+  // console.log({
+  // id,
+  // boxesPerRow,
+  // boxAmount,
+  // rowHeight,
+  // });
+
+  const height =
+    Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
+  // console.log(id, height);
+
+  //
   return (
     <div
       ref={ref}
       style={{
         position: "relative",
         ...style,
+        height: height + "px",
+        // NMBLR_POST_IT_HEIGHT
       }}
       {...other}
     >

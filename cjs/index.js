@@ -323,7 +323,7 @@ function swap(array, moveIndex, toIndex) {
 var GridItemContext = React.createContext(null);
 
 function GridDropZone(_a) {
-    var id = _a.id, boxesPerRow = _a.boxesPerRow, children = _a.children, style = _a.style, _b = _a.disableDrag, disableDrag = _b === void 0 ? false : _b, _c = _a.disableDrop, disableDrop = _c === void 0 ? false : _c, rowHeight = _a.rowHeight, onDragStart = _a.onDragStart, onDragEnd = _a.onDragEnd, other = tslib.__rest(_a, ["id", "boxesPerRow", "children", "style", "disableDrag", "disableDrop", "rowHeight", "onDragStart", "onDragEnd"]);
+    var id = _a.id, boxesPerRow = _a.boxesPerRow, boxAmount = _a.boxAmount, children = _a.children, style = _a.style, _b = _a.disableDrag, disableDrag = _b === void 0 ? false : _b, _c = _a.disableDrop, disableDrop = _c === void 0 ? false : _c, rowHeight = _a.rowHeight, onDragStart = _a.onDragStart, onDragEnd = _a.onDragEnd, other = tslib.__rest(_a, ["id", "boxesPerRow", "boxAmount", "children", "style", "disableDrag", "disableDrop", "rowHeight", "onDragStart", "onDragEnd"]);
     var _d = React.useContext(GridContext), traverse = _d.traverse, startTraverse = _d.startTraverse, endTraverse = _d.endTraverse, register = _d.register, measureAll = _d.measureAll, onChange = _d.onChange, remove = _d.remove, getActiveDropId = _d.getActiveDropId;
     var ref = React.useRef(null);
     var _e = useMeasure(ref), bounds = _e.bounds, remeasure = _e.remeasure;
@@ -364,7 +364,17 @@ function GridDropZone(_a) {
     // keep an initial list of our item indexes. We use this
     // when animating swap positions on drag events
     var itemsIndexes = React.Children.map(children, function (_, i) { return i; });
-    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign({ position: "relative" }, style) }, other), grid.columnWidth === 0
+    var isTarget = (traverse === null || traverse === void 0 ? void 0 : traverse.targetId) === id;
+    // console.log({
+    // id,
+    // boxesPerRow,
+    // boxAmount,
+    // rowHeight,
+    // });
+    var height = Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
+    // console.log(id, height);
+    //
+    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign(tslib.__assign({ position: "relative" }, style), { height: height + "px" }) }, other), grid.columnWidth === 0
         ? null
         : React.Children.map(children, function (child, i) {
             var isTraverseTarget = traverse &&

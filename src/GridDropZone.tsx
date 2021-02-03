@@ -113,7 +113,8 @@ export function GridDropZone({
       style={{
         position: "relative",
         ...style,
-        height: height + "px",
+        // 15 is buffer to see next row when dragging
+        height: height + 15 + "px",
         overflow: isTarget ? "hidden" : "visible",
         // NMBLR_POST_IT_HEIGHT
       }}

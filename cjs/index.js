@@ -368,7 +368,9 @@ function GridDropZone(_a) {
     var height = Math.ceil(boxAmount / boxesPerRow) * rowHeight;
     // Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
     //
-    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign(tslib.__assign({ position: "relative" }, style), { height: height + "px", overflow: isTarget ? "hidden" : "visible" }) }, other), grid.columnWidth === 0
+    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign(tslib.__assign({ position: "relative" }, style), { 
+            // 15 is buffer to see next row when dragging
+            height: height + 15 + "px", overflow: isTarget ? "hidden" : "visible" }) }, other), grid.columnWidth === 0
         ? null
         : React.Children.map(children, function (child, i) {
             var isTraverseTarget = traverse &&

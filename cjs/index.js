@@ -365,16 +365,10 @@ function GridDropZone(_a) {
     // when animating swap positions on drag events
     var itemsIndexes = React.Children.map(children, function (_, i) { return i; });
     var isTarget = (traverse === null || traverse === void 0 ? void 0 : traverse.targetId) === id;
-    // console.log({
-    // id,
-    // boxesPerRow,
-    // boxAmount,
-    // rowHeight,
-    // });
-    var height = Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
-    // console.log(id, height);
+    var height = Math.ceil(boxAmount / boxesPerRow) * rowHeight;
+    // Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
     //
-    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign(tslib.__assign({ position: "relative" }, style), { height: height + "px" }) }, other), grid.columnWidth === 0
+    return (React.createElement("div", tslib.__assign({ ref: ref, style: tslib.__assign(tslib.__assign({ position: "relative" }, style), { height: height + "px", overflow: isTarget ? "hidden" : "visible" }) }, other), grid.columnWidth === 0
         ? null
         : React.Children.map(children, function (child, i) {
             var isTraverseTarget = traverse &&

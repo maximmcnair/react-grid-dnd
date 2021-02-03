@@ -103,16 +103,8 @@ export function GridDropZone({
 
   const isTarget = traverse?.targetId === id;
 
-  // console.log({
-  // id,
-  // boxesPerRow,
-  // boxAmount,
-  // rowHeight,
-  // });
-
-  const height =
-    Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
-  // console.log(id, height);
+  const height = Math.ceil(boxAmount / boxesPerRow) * rowHeight;
+  // Math.ceil((isTarget ? boxAmount + 1 : boxAmount) / boxesPerRow) * rowHeight;
 
   //
   return (
@@ -122,6 +114,7 @@ export function GridDropZone({
         position: "relative",
         ...style,
         height: height + "px",
+        overflow: isTarget ? "hidden" : "visible",
         // NMBLR_POST_IT_HEIGHT
       }}
       {...other}

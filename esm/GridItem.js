@@ -22,7 +22,7 @@ export function GridItem(_a) {
             return {
                 xy: mountXY,
                 immediate: true,
-                zIndex: "1",
+                zIndex: "100",
                 scale: 1.1,
                 opacity: 0.8
             };
@@ -41,7 +41,7 @@ export function GridItem(_a) {
         var y = startCoords.current[1] + state.delta[1];
         set({
             xy: [x, y],
-            zIndex: "1",
+            zIndex: "100",
             immediate: true,
             opacity: 0.8,
             scale: 1.1
